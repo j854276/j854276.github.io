@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-Hans-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta property="og:title" content="遊戲收費計算"/>
+    <meta property="og:description" content="試算結果僅供參考"/>
+    <meta property="og:type" content="website"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous" />
+    <title>遊戲收費計算</title>
+  </head>
+  <body>
+    <div class="container">
+        <blockquote class="blockquote">
+            <p class="mb-0">遊戲收費計算</p>
+            <footer class="blockquote-footer">笨蛋工作室  <cite title="笨蛋工作室 "><a href="https://stupidparticle.com/" target="_blank"></a></cite></footer>
+        </blockquote>
+        <p><a href="https://stupidparticle.com/" target="_blank">https://stupidparticle.com/  </a></p>
+        <h3>試算結果僅供參考</h3>
+        <hr/>
+        <form>
+		   <div class="form-group">
+              <label for="order">訂購方式</label>
+              <select class="form-control" id="order" required>
+                <option value="9" selected>網路購買</option>
+                <option value="1">包場券</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="game">遊戲</label>
+              <select class="form-control" id="game" required>
+                <option value="9" selected>奪命記憶</option>
+                <option value="1">奪命鎖鏈一</option>
+                <option value="2">奪命鎖鏈二</option>
+                <option value="3">顛倒の室</option>
+                <option value="4">鬼新娘</option>
+                <option value="5">醉後任務</option>
+				<option value="6">諜戰1941</option>
+                <option value="7">我們的秘密</option>
+                <option value="8">竹本家</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="d">訂金</label>
+                <input type="number" class="form-control" id="d" min="1" value="1000" placeholder="" aria-describedby="dHelp" required>
+            </div>
+			<div class="form-group">
+              <label for="people">人數</label>
+              <select class="form-control" id="b" required>
+			    <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6" selected>6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="e">還要收多少?</label>
+              <p>試算結果如下</p>
+              <textarea class="form-control" id="e" rows="6" aria-describedby="eHelp" disabled></textarea>
+              <small id="eHelp" class="form-text text-muted"> </small>
+            </div>
+            <button type="button" class="btn btn-primary" id="btn">試算</button>
+        </form>
+        <hr/>
+    </div>
+    <div class="container bg-light">
+        */<p><B>試算結果僅供參考</B></p>/*
+        <p class="lead">製作 <small><a href="https://stupidparticle.com/">https://stupidparticle.com/</a></small></p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            
+            // alert(game);
+            let b = $('#b'); //人數
+            let e = $('#e'); //結果
+			let d = $('#d');
+			let number = 1000;
+            let res = '';
+            let res_text = '';
+			money1 = 650;
+	        money2 = 600;
+			money3 = 500;
+	        money4 = 450;
+
+			
+			
+			  $("#d").on('change', function(){
+                number = parseInt($('#d').val());
+            })
+
+
+
+            $("#btn").on('click', function(){
+ 
+                res = '';
+                res_text = '';
+                let game = $('#game').val();
+				let game_name = $('#game').find(':selected').text();
+                b = parseInt($('#b').val());
+                d = parseInt($('#d').val());
+				
+				
+          
+				if(b == 10 && (game == 9 || game == 2 )){
+				         total = b * money2;
+				         res =  b * money2 - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數:' + b + '\n' + '訂金:' + number + '\n'  + '1人:' + money2  + '元' + '\n' + '總金額'+ total + ' 元' + '\n' + '還要收'+ res + ' 元';
+		        }else if(b < 10 && b > 3 && (game == 9 || game == 2)){
+				         total = b * money1
+						 res = money1 * b - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數:' + b + '\n' + '訂金:' + number + '\n'  + '1人:' + money1  + '元' + '\n' + '總金額'+ total + ' 元' + '\n' + '還要收'+ res + ' 元';
+				}
+				else if(b == 8 && (game == 1 || game == 3  || game == 4 || game == 6 || game == 7)){
+				         total = b * money2
+				         res = money2 * b - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' + '\n'  + '1人: ' + money2  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+				}else if(b < 8 && b > 3 && (game == 1 || game == 3  || game == 4 || game == 6 || game == 7)){
+				         total = b * money1
+						 res = money1 * b - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' +  '\n'  + '1人: ' + money1  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+				}else if(b <= 5 && (game == 8)){
+				         total = b * money3				         
+						 res = money3 * b - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' + '\n'  + '1人: ' + money3  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+				}else if(b <= 6 && b >=5 && (game == 8)){
+				         total = b * money4				         
+						 res = money4 * b - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' + '\n'  + '1人: ' + money4  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+				}else if(b == 10 && game == 5){
+				         total = b * money2;
+				         res =  b * money2 - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' + '\n'  + '1人: ' + money2  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+		        }else if(b < 10 && b > 6 && game == 5){
+				         total = b * money1;
+				         res =  b * money1 - number;
+				         res_text = '遊戲名稱:' + game_name + '\n' + '人數: ' + b + '\n' + '訂金: ' + number + ' 元' + '\n'  + '1人: ' + money1  + ' 元' + '\n' + '總金額: '+ total + ' 元' + '\n' + '還要收: '+ res + ' 元';
+		        }else if(b > 6 && (game == 8)){
+						 res_text = "超過人數上限";
+				}else if(b > 8 && (game == 1 || game == 3 || game == 4 || game == 6 || game == 7)){
+						 res_text = "超過人數上限";				 
+				}else if(b < 4 && (game == 9 || game == 1 || game == 2 || game == 3  || game == 4 || game == 6 || game == 7)){
+				         res_text = "低於人數下限";			 
+			    }else if(b < 6 && game == 5){
+				         res_text = "低於人數下限";
+			    }
+
+                e.val(res_text);
+            });
+        });
+    </script>
+  </body>
+</html> 
